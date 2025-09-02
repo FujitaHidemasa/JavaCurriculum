@@ -16,5 +16,5 @@ public class Qes1 {
 	char letter = '\u0000';
 	String letters = null;
 	boolean isBoolean = false;
-
+	
 }
