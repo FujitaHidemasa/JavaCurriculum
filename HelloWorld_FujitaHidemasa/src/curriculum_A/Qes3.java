@@ -9,26 +9,47 @@ public class Qes3 {
 	public static void main(String[] args) {
 		// TODO 自動生成されたメソッド・スタブ
 
-		int intNum = 11110;
-		System.out.println(intNum);
 		
-		byte byteNum = 20;
-		System.out.println(byteNum);
-		
-		String letters = "a ハロー true";
-		System.out.println(letters);
-		
-		System.out.println(intNum+byteNum);
-		
-		//問３−５
+		byte byteNum = 10;
+		short shortNum = 100;
+		int intNum = 1000;
+		long longNum = 10000;
+		float floatNum = 9.5f;
+		double doubleNum = 10.5;
+		char letter = 'a';
+		String letters = "ハロー";
+		boolean isBoolean = true;
 		
 		
+		//(1)
+		long a = (byteNum + shortNum + intNum + longNum);
+		System.out.println(a);
 		
-		double doubleNum = 10.5/100;
-		System.out.println(doubleNum);
+		//(2)
+		int b = byteNum * 2;
+		System.out.println(b);
 		
-		int Num = 10-100;
-		System.out.println(Num);
+		//(3)
+		String c = (letter + " " + letters + " " + isBoolean);
+		System.out.println(c);
+		
+		//(4)
+		int d = (int)(floatNum + doubleNum);
+		long e = a + d;
+		System.out.println(e);
+		
+		//(5)
+		long f = (byteNum * shortNum * intNum * longNum);
+		System.out.println(f);
+		
+		//(6)
+		double g = doubleNum / 100;
+		System.out.println(g);
+		
+		//(7)
+		int h = byteNum - 100;
+		System.out.println(h);
+		
 	}
 
 }
