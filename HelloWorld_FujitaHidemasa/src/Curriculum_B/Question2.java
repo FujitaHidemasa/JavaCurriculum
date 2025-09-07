@@ -98,6 +98,73 @@ public class Question2 {
 		if(name == null || name.equals(" ")) {
 			System.out.println("入力が無効です");
 		}
+		
+		//・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・・
+		
+		
+	//　switch型条件分岐
+		
+		//問９
+		int day = 3;
+		
+		switch(day) {
+		case 1:
+		 System.out.println("月曜日です");
+		 break;
+		 
+		case 2:
+		 System.out.println("火曜日です");
+		 break;
+		
+		case 3:
+		 System.out.println("水曜日です");
+		 break;
+		
+		case 4:
+		 System.out.println("木曜日です");
+		 break;
+		 
+		case 5:
+		 System.out.println("金曜日です");
+		 break;
+		
+		case 6:
+		 System.out.println("土曜日です");
+		 break;
+		
+		case 7:
+		 System.out.println("日曜日です");
+		 break;
+		
+		default:
+		 System.out.println("無効な入力です");
+		}
+		
+		
+		//問１０
+		int month = 13;
+		
+		switch(month) {
+		
+		case 12:  case 1:  case 2:
+			System.out.println("冬");
+			break;
+			
+		case 3:  case 4:  case 5:
+			System.out.println("春");
+			break;
+			
+		case 6:  case 7:  case 8:
+			System.out.println("夏");
+			break;
+			
+		case 9:  case 10:  case 11:	
+			System.out.println("秋");
+			break;
+			
+		default:
+			System.out.println("無効な月です");
+			break;
+		}
 	}
-
 }
