@@ -24,8 +24,6 @@ public class Question3 {
 		for(int i = 2;i <= 20;i++) {
 			if(i%2 == 0) {
 				System.out.println(i);
-			}else {
-				continue;
 			}
 		}
 		System.out.println("");//見やすいように改行を入れています。
@@ -79,9 +77,7 @@ public class Question3 {
 		while(b <= 20) {
 			if(b%2 == 0) {
 				System.out.println(b);
-				b++;
-			}else {
-				b++;
+				b += 2;
 			}
 		}
 		System.out.println("");//見やすいように改行を入れています。

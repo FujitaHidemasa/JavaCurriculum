@@ -1,5 +1,7 @@
 package Curriculum_B;
 
+import java.util.Scanner;
+
 public class Question2 {
 	
 	/************************************
@@ -93,9 +95,11 @@ public class Question2 {
 		}
 		
 		//問８
-		String name =" ";
+		System.out.print("文字を入力してください：");
+		Scanner sc = new Scanner(System.in);
+		String name =sc.nextLine();
 		
-		if(name == null || name.equals(" ")) {
+		if(name == null || name.isEmpty()) {
 			System.out.println("入力が無効です");
 		}
 		
