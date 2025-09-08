@@ -166,5 +166,8 @@ public class Question2 {
 			System.out.println("無効な月です");
 			break;
 		}
+		
+		float ans = 7 / 6;
+		System.out.println(ans);
 	}
 }
