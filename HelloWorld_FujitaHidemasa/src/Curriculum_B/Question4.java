@@ -79,14 +79,91 @@ public class Question4 {
 		for(int i = 0;i < f.length;i++) {
 			if(input == f[i]) {
 				System.out.println("入力した値は配列に含まれています");
-				break;
 			}else {
 				System.out.println("入力した値は配列に含まれていません");
 				break;
 			}
 		}
+		System.out.println("");//見やすい様に改行を入れています
 		
 		
+		//問７
+		int [][] array = {
+			{ 1, 2 },
+			{ 3, 4 },
+			{ 5, 6 }
+		};
+		
+		for(int i = 0; i < array.length; i++) {
+			for(int j = 0; j < array[i].length; j++) {
+				System.out.print( array[i][j] + " " );
+			}
+		}
+		
+		System.out.println("");//見やすい様に改行を入れています
+		System.out.println("");//見やすい様に改行を入れています
+		
+		//問８
+		
+		int Total = 0;
+		int[][] Array = {
+				{ 10, 20, 30 },
+				{ 40, 50, 60 },
+				{ 70, 80, 90 }
+		};
+		
+		for( int i = 0; i < Array.length; i++ ) {
+			for( int j = 0; j < Array[i].length; j++ ) {
+				Total += Array[i][j];
+			}
+		}
+		System.out.println( Total );
+		
+		System.out.println("");//見やすい様に改行を入れています
+		
+		
+		//問９
+		int[][] array2 = {
+				{ 12, 15, 8 },
+				{ 6, 19, 25 },
+				{ 30, 2, 10 }
+		};
+		
+		int Max = array2[0][0];
+		int Min = array2[0][0];
+		
+		for( int i = 0; i < array2.length; i++ ) {
+			for( int j = 0; j < array2[i].length; j++ ) {
+				if( array2[i][j] > Max ) {
+					Max = array2[i][j];
+				}
+				
+				if( array2[i][j] < Min ) {
+					Min = array2[i][j];
+				}
+			}
+		}
+		System.out.println( "最大値：" + Max );
+		System.out.println( "最小値：" + Min );
+		
+		
+		System.out.println("");//見やすい様に改行を入れています
+		
+		//問１０
+		int[][][] array3 = {
+				{ { 1, 2 } , { 3, 4 } },
+				{ { 5, 6 } , { 7, 8 } }
+		};
+		
+		for( int i = 0; i < array3.length; i++ ) {
+			for( int j = 0; j < array3[i].length; j++ ) {
+				for( int k = 0; k < array3[i][j].length; k++ ) {
+					System.out.print( array3[i][j][k] + " " );
+				}
+				System.out.println("");
+			}
+			System.out.println("");
+		}
 	}
 
 }
