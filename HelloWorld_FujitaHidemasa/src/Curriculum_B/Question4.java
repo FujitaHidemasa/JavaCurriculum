@@ -76,13 +76,17 @@ public class Question4 {
 		System.out.print("値を入力してください：");
 		int input = sc.nextInt();
 		
+		boolean found = false;
 		for(int i = 0;i < f.length;i++) {
 			if(input == f[i]) {
-				System.out.println("入力した値は配列に含まれています");
-			}else {
-				System.out.println("入力した値は配列に含まれていません");
+				found = true;
 				break;
 			}
+		}
+		if(found == true) {
+			System.out.println("入力した値は配列に含まれています");
+		}else {
+			System.out.println("入力した値は配列に含まれていません");
 		}
 		System.out.println("");//見やすい様に改行を入れています
 		
