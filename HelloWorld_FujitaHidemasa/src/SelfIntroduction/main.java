@@ -1,5 +1,10 @@
 package SelfIntroduction;
 
+/************************************
+ * 　[概要] 自己紹介プログラム
+ * 　[詳細] 自己紹介プログラムを作成
+ ***********************************/
+
 import java.util.ArrayList;
 import java.util.List;
 
