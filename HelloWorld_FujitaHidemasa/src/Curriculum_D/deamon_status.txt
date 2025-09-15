@@ -1,0 +1,4 @@
+name=Daemon
+hp=85
+at=12
+sp=6
