@@ -15,15 +15,11 @@ public class LoginLogic {
 	
 	@Value("${password.hash.code}")
 	private String hashCode;
-	
-	
-	
+
 	//ユーザー情報　Mapper
 	
 	@Autowired
 	private UserMapper usermapper;
-
-	
 	
 	/**
 	 * 
@@ -42,7 +38,6 @@ public class LoginLogic {
 		
 		return passHash;
 	}
-	
 	
 	public User getLoginUser(String email, byte[] password) {
 		User searchUser = new User();

@@ -19,8 +19,7 @@ public class AuthRestController {
 	public AuthRestController(LoginService loginService) {
 		this.loginService = loginService;
 	}
-	
-	
+
 	//ログイン
 	@PostMapping("/login")
 	public void login(@RequestParam String username, @RequestParam String password, HttpSession session) {

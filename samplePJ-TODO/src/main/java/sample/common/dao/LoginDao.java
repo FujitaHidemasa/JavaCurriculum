@@ -9,11 +9,9 @@ import sample.common.dao.mapper.LoginMapper;
 @Repository
 public class LoginDao {
 	
-	
 	@Autowired
 	private LoginMapper loginMapper;
-	
-	
+		
 	//ユーザー登録
 	public void insert (Login login) {
 		loginMapper.insert(login);

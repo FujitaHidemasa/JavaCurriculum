@@ -16,13 +16,11 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 	
-	
 	//ユーザー登録画面表示
 	@GetMapping("/register")
 	public String showRegisterForm() {
 		return "register";
 	}
-	
 	
 	//ユーザー登録処理
 	@PostMapping("/register")
@@ -33,16 +31,12 @@ public class LoginController {
 		return "redirect:/login";
 	}
 	
-	
-	
 	//ログイン画面表示
 	@GetMapping("login")
 	public String showLoginForm() {
 		return "login";
 	}
-	
-	
-	
+
 	//ログイン処理
 	@PostMapping("/login")
 	public String login(@RequestParam String username, @RequestParam String password, HttpSession session) {
@@ -55,8 +49,6 @@ public class LoginController {
 		return "redirect:/tasks";
 	}
 	
-	
-	
 	//ログアウト
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
@@ -64,5 +56,4 @@ public class LoginController {
 		return "redirect:/login";
 	}
 	
-
 }

@@ -19,6 +19,7 @@ dependencies{
 	runtimeOnly 'org.postgresql:postgresql'
 	//developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.mybatis:mybatis-typehandlers-javatime:1.0.2'
 	}
 	
 	tasks.named('test'){

@@ -9,5 +9,4 @@ public interface UserMapper {
 
 	//ユーザー検索（ログイン用）
 	User userSearch(User searchUser) ;
-		
 }

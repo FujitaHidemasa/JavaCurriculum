@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.servlet.http.HttpSession;
@@ -26,13 +27,16 @@ public class TaskRestController {
 		this.taskService = taskService;
 	}
 	
-	
 	//ログインユーザーのタスク一覧取得
 	@GetMapping
-	public List<Task> getTasks(HttpSession session){
-		String username = getUsername(session);
-		return taskService.getTaskPaged(username, 1, Integer.MAX_VALUE);
-	}
+	public List<Task> getTasks(
+		        @RequestParam(defaultValue = "1") int page,
+		        @RequestParam(defaultValue = "10") int size,
+		        HttpSession session) {
+		        
+				String username = getUsername(session);
+				return taskService.getTaskPaged(username, page, size); 
+		}
 	
 	//1件取得
 	@GetMapping("/{id}")
@@ -46,9 +50,8 @@ public class TaskRestController {
 	public void createTask(@RequestBody Task task, HttpSession session) {
 		String username = getUsername(session);
 		task.setUsername(username);
-		taskService.insertTask(task);
+		taskService.insertTask(task, username);
 	}
-	
 	
 	//タスク更新
 	@PutMapping("/{id}")
@@ -58,8 +61,7 @@ public class TaskRestController {
 		task.setUsername(username);
 		taskService.updateTask(task, username);
 	}
-	
-	
+
 	//タスク削除
 	@DeleteMapping("/{id}")
 	public void deleteTask(@PathVariable Long id, HttpSession session) {

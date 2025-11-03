@@ -19,9 +19,9 @@ import sample.common.service.TaskService;
 @Controller
 @RequestMapping("/tasks")
 public class TaskController {
-
+	
     private final TaskService taskService;
-
+    
     public TaskController(TaskService taskService) {
         this.taskService = taskService;
     }
@@ -30,12 +30,19 @@ public class TaskController {
     public String list(@RequestParam(defaultValue = "1") int page, Model model, HttpSession session) {
 
         String username = getUsername(session);
+
+        // ★修正: usernameがnullの場合、ログインページにリダイレクト
+        if (username == null) {
+            // 例外処理をせずに、未ログインユーザーをログイン画面に誘導
+            return "redirect:/login"; // ログイン画面のパスに合わせてください
+        }
+        
         int pageSize = 10;
 
+        // 絞り込みに、セッションから取得したそのままの username を使用
         var tasks = taskService.getTaskPaged(username, page, pageSize);
         int totalTasks = taskService.getTaskCount(username);
 
-        // totalPages が0になる場合を回避
         int totalPages = (int) Math.ceil((double) totalTasks / pageSize);
         if (totalPages < 1) totalPages = 1;
 
@@ -47,7 +54,7 @@ public class TaskController {
 
     @GetMapping("/new")
     public String showNewForm(Model model) {
-    	Task task = new Task();
+        Task task = new Task();
         task.setStartDate(LocalDate.now());
         task.setEndDate(LocalDate.now().plusDays(1));
         model.addAttribute("task", task);
@@ -57,15 +64,19 @@ public class TaskController {
     @PostMapping
     public String createTask(@ModelAttribute Task task, HttpSession session) {
         String username = getUsername(session);
-        task.setUsername(username); // ログインユーザーの名前をセット
+        if (username == null) return "redirect:/login"; // 未ログイン時のガード
+
+        // 💡 ユーザー名の大文字小文字を保持したままDBに保存
         task.setName(username);
-        taskService.insertTask(task);
+        taskService.insertTask(task, username);
         return "redirect:/tasks";
     }
 
     @GetMapping("/edit/{id}")
     public String showEditFrom(@PathVariable Long id, Model model, HttpSession session) {
         String username = getUsername(session);
+        if (username == null) return "redirect:/login"; // 未ログイン時のガード
+        
         Task task = taskService.getTaskById(id, username);
 
         if (task == null) {
@@ -78,6 +89,8 @@ public class TaskController {
     @PostMapping("/update/{id}")
     public String updateTask(@PathVariable Long id, @ModelAttribute Task task, HttpSession session) {
         String username = getUsername(session);
+        if (username == null) return "redirect:/login"; // 未ログイン時のガード
+        
         task.setId(id);
         task.setUsername(username);
         taskService.updateTask(task, username);
@@ -86,14 +99,30 @@ public class TaskController {
     
     @PostMapping("/delete/{id}")
     public String deleteTask(@PathVariable Long id, HttpSession session) {
-    	String username = getUsername(session);
-    	taskService.deleteTask(id, username);
-    	return "redirect:/tasks";
+        String username = getUsername(session);
+        if (username == null) return "redirect:/login"; // 未ログイン時のガード
+        
+        taskService.deleteTask(id, username);
+        return "redirect:/tasks";
     }
 
+    // ★修正: ログ出力を削除し、nullチェックだけ残す
     private String getUsername(HttpSession session) {
         Login login = (Login) session.getAttribute("login");
+        
+        if (login == null) {
+            // loginがnullの場合は、nullを返す
+            return null; 
+        }
         return login.getUsername();
     }
+    
+    // /test メソッドはデバッグコードのため削除推奨ですが、残します
+    @GetMapping("/test")
+    public String test(Model model) {
+        var tasks = taskService.getAllTasks();
+        // System.out.println(tasks); // ログ削除
+        model.addAttribute("tasks", tasks);
+        return "tasks/list";
+    }
 }
-

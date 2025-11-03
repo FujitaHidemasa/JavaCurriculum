@@ -12,10 +12,12 @@ public interface TaskService {
 	
 	Task getTaskById(Long id, String username);
 	
-	void insertTask(Task task);
+	void insertTask(Task task, String Username);
 	
 	void updateTask(Task task, String username);
 	
 	void deleteTask(Long id, String username);
+	
+	List<Task> getAllTasks();
 
 }

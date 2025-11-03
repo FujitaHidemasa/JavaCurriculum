@@ -11,10 +11,8 @@ public interface LoginMapper {
 	//ユーザー登録
 	void insert(Login login);
 	
-	
 	//ユーザー名とパスワードで1件取得
 	Login selectByUsernameAndPassword(@Param("username") String name,@Param("password") String password);
-	
 }
 
 

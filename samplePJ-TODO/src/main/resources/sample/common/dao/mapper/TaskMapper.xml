@@ -2,67 +2,75 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="sample.common.dao.mapper.TaskMapper">
 
+    <!-- 結果マッピング -->
+    <resultMap id="TaskResultMap" type="sample.common.dao.entity.Task">
+        <id property="id" column="id" />
+        <result property="title" column="title" />
+        <result property="content" column="content" />
+        <result property="name" column="name" />
+        <result property="username" column="username" />
+        <result property="startDate" column="start_date" />
+        <result property="endDate" column="end_date" />
+        <result property="createdAt" column="created_at" />
+        <result property="updatedAt" column="updated_at" />
+    </resultMap>
 
-<resultMap id="TaskResultMap" type="sample.common.dao.entity.Task">
-<id property="id" column="id" />
-<result property="title" column="title" />
-<result property="content" column="content" />
-<result property="name" column="name" />
-<result property="username" column="username" />
-<result property="startDate" column="start_date" />
-<result property="endDate" column="end_date" />
-<result property="createdAt" column="created_at" />
-<result property="updatedAt" column="updated_at" />
-</resultMap>
+    <!-- ページング -->
+    <select id="findPagedByUsername" parameterType="map" resultMap="TaskResultMap">
+        SELECT id, title, content, name, username, start_date, end_date, created_at, updated_at
+        FROM tasks
+        WHERE LOWER(username) = LOWER(#{username})
+        ORDER BY id DESC
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
 
+    <!-- 全タスク -->
+    <select id="findAllTasks" resultMap="TaskResultMap">
+        SELECT id, title, content, name, username, start_date, end_date, created_at, updated_at
+        FROM tasks
+        ORDER BY id DESC
+    </select>
 
-<select id="findPagedByUsername" resultMap="TaskResultMap">
-SELECT id, title, content, name, username, start_date, end_date, created_at, updated_at
-FROM tasks
-WHERE username = #{username}
-ORDER BY id DESC
-LIMIT #{limit} OFFSET #{offset}
-</select>
+    <!-- 件数 -->
+    <select id="countAllByUsername" resultType="int">
+        SELECT COUNT(*)
+        FROM tasks
+        WHERE username = #{username}
+    </select>
 
+    <!-- ID検索 -->
+    <select id="findById" resultMap="TaskResultMap">
+        SELECT id, title, content, name, username, start_date, end_date, created_at, updated_at
+        FROM tasks
+        WHERE id = #{id}
+    </select>
 
-<select id="countAllByUsername" resultType="int">
-SELECT COUNT(*)
-FROM tasks
-WHERE username = #{username}
-</select>
+    <!-- 登録 -->
+    <insert id="insert" parameterType="sample.common.dao.entity.Task">
+        INSERT INTO tasks(title, content, start_date, end_date, username, name, created_at, updated_at)
+        VALUES (#{title}, #{content}, #{startDate}, #{endDate}, #{username}, #{name}, #{createdAt}, #{updatedAt})
+    </insert>
 
+    <!-- 更新 -->
+    <update id="update">
+        UPDATE tasks
+        SET title = #{task.title},
+            content = #{task.content},
+            start_date = #{task.startDate},
+            end_date = #{task.endDate},
+            name = #{task.name},
+            updated_at = #{task.updatedAt}
+        WHERE id = #{task.id} 
+          AND username = #{username}
+    </update>
 
-<select id="findById" resultMap="TaskResultMap">
-SELECT id, title, content, name, username, start_date, end_date, created_at, updated_at
-FROM tasks
-WHERE id = #{id}
-</select>
+    <!-- 削除 -->
+    <delete id="delete">
+        DELETE FROM tasks
+        WHERE id = #{id} AND username = #{username}
+    </delete>
 
-
-<insert id="insert" parameterType="sample.common.dao.entity.Task">
-INSERT INTO tasks(title, content, start_date, end_date, username, name, created_at, updated_at)
-VALUES (#{title}, #{content}, #{startDate}, #{endDate}, #{username},#{name}, NOW(), NOW())
-</insert>
-
-
-
-<update id="update">
-UPDATE tasks
-SET title = #{task.title},
-content = #{task.content},
-start_date = #{task.startDate},
-end_date = #{task.endDate},
-name = #{task.name},
-updated_at = now()
-WHERE id = #{task.id} 
-AND username = #{username}
-</update>
-
-
-<delete id="delete">
-DELETE FROM tasks
-WHERE id = #{id} AND username = #{username}
-</delete>
 </mapper>

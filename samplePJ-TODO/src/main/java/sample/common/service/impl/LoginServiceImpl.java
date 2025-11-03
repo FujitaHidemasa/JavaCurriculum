@@ -27,11 +27,9 @@ public class LoginServiceImpl implements LoginService {
 		loginDao.insert(login);
 	}
 	
-	
 	@Override
 	public Login login(String username, String password) {
 		
 		return loginDao.findByUsernameAndPassword(username, password);
 	}
-
 }

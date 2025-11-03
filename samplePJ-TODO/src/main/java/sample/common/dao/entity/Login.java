@@ -10,39 +10,44 @@ public class Login {
 	private String password; //パウワード（ハッシュ化）
 	private LocalDateTime createdAt; //登録日時
 	private LocalDateTime updatedAt; //更新日時
+	
 	public long getId() {
 		return id;
 	}
+	
 	public void setId(long id) {
 		this.id = id;
 	}
+	
 	public String getUsername() {
 		return username;
 	}
+	
 	public void setUsername(String username) {
 		this.username = username;
 	}
+	
 	public String getPassword() {
 		return password;
 	}
+	
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
 	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
+	
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
 	}
+	
 	public LocalDateTime getUpdatedAt() {
 		return updatedAt;
 	}
+	
 	public void setUpdatedAt(LocalDateTime updatedAt) {
 		this.updatedAt = updatedAt;
 	}
- 	
-	
-	
-	
-
 }

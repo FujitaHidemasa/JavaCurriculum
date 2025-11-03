@@ -1,28 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="sample.common.dao.mapper.LoginMapper">
 
+    <!-- ユーザー登録 -->
+    <insert id="insert" parameterType="sample.common.dao.entity.Login">
+        INSERT INTO login(username, password, created_at, updated_at)
+        VALUES(#{username}, #{password}, #{createdAt}, #{updatedAt})
+    </insert>
 
-<!-- ユーザー登録 -->
-<insert id="insert" parameterType="sample.common.dao.entity.Login">
-INSERT INTO login(username, password, created_at, updated_at)
-VALUES(#{username}, #{password}, #{createdAt}, #{updatedAt})
-</insert>
+    <!-- ユーザー名＋パスワードで１件取得 -->
+    <select id="selectByUsernameAndPassword" resultType="sample.common.dao.entity.Login">
+        SELECT
+            id,
+            username,
+            password,
+            created_at,
+            updated_at
+        FROM login
+        WHERE username = #{username}
+          AND password = #{password}
+    </select>
 
-<!-- ユーザー名＋パスワードで１件取得 -->
-<select id="selectByUsernameAndPassword" resultType="sample.common.dao.entity.Login">
-SELECT
-id,
-username,
-password,
-created_at,
-updated_at
-FROM login
-WHERE username = #{username}
-AND password = #{password}
-</select>
 </mapper>
